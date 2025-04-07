@@ -17,9 +17,9 @@ https://mri-image-reconstruction-using-kspace.streamlit.app/
 
 ## ⚕️ Live Image Reconstruction
 
-![Demo](docs/demo.gif)
-
 ![Demo](docs/fourier_reconstruction.gif)
+
+![Demo](docs/demo.gif)
 
 ---
 
