@@ -7,11 +7,9 @@ Fourier transform.**
 **[Follow this link to run the online version (hosted on Streamlit cloud)](https://kspace-explorer.streamlitapp.com/)**
 
 ![Demo](docs/demo.gif)
+![Demo](docs/fourier_reconstruction.gif)
 
-**K-space Explorer Online** is the experimental browser based version of 
-[K-space Explorer](https://github.com/birogeri/kspace-explorer). The online 
-version does not require any installation, and it can be used on any device 
-capable of running a modern browser.
+**K-space Explorer Online** is the experimental browser based version of [K-space Explorer](https://github.com/birogeri/kspace-explorer). The online version does not require any installation, and it can be used on any device capable of running a modern browser.
 
 The software has many useful features, such as:
 
@@ -19,15 +17,7 @@ The software has many useful features, such as:
 * Automatic Fourier transform to instantaneously visualise changes
 * Load your own images and analyse artefacts originating from k-space
 
-Due to the differences in user interface capability, K-space Online does not 
-have all the tools and features of the desktop version.
-
----
-
-☕ **This app was created in my spare time.**
-If you find it useful please consider [buying me a coffee with PayPal](https://www.paypal.me/birogeri/5gbp) ☕
-
----
+Due to the differences in user interface capability, K-space Online does not have all the tools and features of the desktop version.
 
 ## **Contents**
 * [Installation](#installation)
@@ -60,7 +50,7 @@ If you would like to install and run or host it on your own computer, follow the
         pip3 install numpy pydicom Pillow streamlit
     ```
 
-3. [Download the app](https://github.com/birogeri/kspace-explorer-streamlit/archive/master.zip) and extract it
+3. [Download the app](https://github.com/MohitGupta0123/MRI-Image-reconstruction-using-kspace/archive/refs/heads/main.zip) and extract it
 
 ## Starting the program
 
