@@ -649,6 +649,25 @@ def save_plot_to_memory(original, individual_grating, rec_grating, rec_image, id
     buf.seek(0)
     return buf
 
+def save_final_plot_to_memory(original, rec_image):
+    fig, axes = plt.subplots(1, 2, figsize=(20, 5))
+
+    axes[0].imshow(original, cmap='gray')
+    axes[0].set_title("Original Image")
+
+    axes[1].imshow(np.abs(rec_image), cmap='gray')
+    axes[1].set_title("Reconstruction")
+
+    for ax in axes:
+        ax.axis('off')
+    
+    buf = BytesIO()
+    plt.tight_layout()
+    plt.savefig(buf, format='png')
+    plt.close(fig)
+    buf.seek(0)
+    return buf
+
 def live_fourier_reconstruction(image_array, ft, coords_list, centre_x, centre_y, max_iter=1000):
     st.write("Starting reconstruction...")
     rec_image = np.zeros_like(image_array)
@@ -696,17 +715,31 @@ def live_fourier_reconstruction(image_array, ft, coords_list, centre_x, centre_y
     st.success("Reconstruction completed!")
     
     # Save the final image buffer to session_state
-    final_buf = save_plot_to_memory(image_array, individual_grating, rec_grating, rec_image, idx)
+    final_buf_to_be_saved = save_plot_to_memory(image_array, individual_grating, rec_grating, rec_image, idx)
+    saved_frames.append(imageio.v2.imread(final_buf_to_be_saved))  # Safe read
+    final_buf = save_final_plot_to_memory(image_array, rec_image)
     final_bytes = final_buf.getvalue()
-    saved_frames.append(imageio.v2.imread(BytesIO(final_bytes)))  # Safe read
     st.session_state['final_reconstructed_image'] = final_bytes  # Safe store
     
     gif_path = "fourier_reconstruction.gif"
-    imageio.mimsave(gif_path, saved_frames, duration=0.1)
+    imageio.mimsave(gif_path, saved_frames, duration=0.2)
     # st.image(gif_path, caption="Fourier Reconstruction GIF", use_container_width=True)
+    
+    st.write('👇🏻 Please DOWNLOAD this to proceed 🔻')
 
+    # Optional message
+    message = st.empty()
+    message.write('Preparing the download...')
+
+    # Render the download button (user can click any time)
     with open(gif_path, "rb") as f:
         st.download_button("Download Reconstruction GIF", f, file_name="fourier_reconstruction.gif")
+
+    # Wait 3 seconds, then continue regardless of user click
+    time.sleep(3)
+
+    # Clear message
+    message.empty()
 
     return rec_image
 
@@ -756,7 +789,7 @@ if __name__ == "__main__":
     # Show final image
     if 'final_reconstructed_image' in st.session_state:
         st.title("Fourier Reconstruction")
-        st.image(st.session_state['final_reconstructed_image'], caption="Final Reconstructed Image", use_container_width=True)
+        st.image(st.session_state['final_reconstructed_image'], caption="Final Reconstructed Image", use_container_width=False)
 
     st.subheader("Detailed K-Space Visualization")
     
@@ -773,6 +806,39 @@ if __name__ == "__main__":
             ax1.set_xlabel('Magnitude')
             ax1.set_ylabel('Frequency')
             st.pyplot(fig1)
+        
+        # with st.expander("📊 K-space Histogram", expanded=True):
+        #     st.subheader("Histogram")
+        #     fig1 = plt.figure(figsize=(6, 6))
+        #     fig1.patch.set_alpha(0)  # Transparent figure background
+        #     ax1 = fig1.add_subplot(111)
+        #     ax1.set_facecolor('none')  # Transparent axes background
+
+        #     # Plot histogram
+        #     ax1.hist(ft_magnitude.ravel(), bins=100, color='red', edgecolor='black')
+
+        #     # Set title and labels with white color
+        #     ax1.set_title('Histogram of K-space Magnitude', color='white')
+        #     ax1.set_xlabel('Magnitude', color='white')
+        #     ax1.set_ylabel('Frequency', color='white')
+
+        #     # Set axis spines (borders) color to white
+        #     for spine in ax1.spines.values():
+        #         spine.set_color('white')
+
+        #     # Set tick parameters to white
+        #     ax1.tick_params(axis='both', colors='white')
+
+        #     # Set tick labels to white
+        #     ax1.xaxis.label.set_color('white')
+        #     ax1.yaxis.label.set_color('white')
+
+        #     # Set tick lines to white
+        #     ax1.xaxis.set_tick_params(color='white')
+        #     ax1.yaxis.set_tick_params(color='white')
+
+        #     st.pyplot(fig1)
+
 
     with col2:
         with st.expander("🧭 K-space 3D Visualization", expanded=True):
