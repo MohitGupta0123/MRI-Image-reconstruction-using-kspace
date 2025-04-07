@@ -953,7 +953,7 @@ if __name__ == "__main__":
             state.partial_fourier_disabled = False
 
     # Sidebar elements
-    st.sidebar.header('⚕️ MRI Image Reconstruction ⚕️')
+    st.sidebar.header('⚕️MRI Image Reconstruction⚕️')
     with st.sidebar.expander("Load custom image", icon=':material/upload_file:'):
         uploader = st.file_uploader(
             'Upload a file',
