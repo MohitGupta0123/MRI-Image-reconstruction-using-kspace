@@ -79,9 +79,4 @@ Even if a scanner original DICOM file is used, the resulting k-space is not equi
 to the scanner raw data as it contains all post-acquisition modifications
 applied by the scanner software.
 
-## Author & Contributors
-
-| ![Author](https://i.imgur.com/tpRket9.png) |
-|:--:|
-| [Gergely Biró](https://www.linkedin.com/in/gergelybiro) |
-
+## I hope you like it 🌟
