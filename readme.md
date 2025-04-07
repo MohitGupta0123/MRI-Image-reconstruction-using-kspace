@@ -66,8 +66,6 @@ More info about Streamlit can be found [here.](https://docs.streamlit.io/)
 ## Disclaimer and limitations
 
 This software is not intended for medical use.
-Even if a scanner original DICOM file is used, the resulting k-space is not equivalent
-to the scanner raw data as it contains all post-acquisition modifications
-applied by the scanner software.
+Even if a scanner original DICOM file is used, the resulting k-space is not equivalent to the scanner raw data as it contains all post-acquisition modifications applied by the scanner software.
 
 ## I hope you like it 🌟
