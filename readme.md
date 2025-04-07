@@ -1,71 +1,184 @@
-# K-space Explorer Online
+# ⚕️ MRI Image Reconstruction using K-Space ⚕️
 
-**An educational tool to get hands-on experience with the k-space and the effects of various modifications on the resulting image after an inverse Fourier transform.**
+#### 🧩 With Fourier Transform Demo
 
-**[Follow this link to run the online version (hosted on Streamlit cloud)](https://kspace-explorer.streamlitapp.com/)**
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Live_App-brightgreen?logo=streamlit)](https://mri-image-reconstruction-using-kspace.streamlit.app/)
+
+A Streamlit application that demonstrates step-by-step reconstruction of MRI images from their frequency domain (k-space) data using the 2D Fourier Transform.
+
+This interactive tool helps users understand how low and high-frequency components contribute to the final image, showing live reconstruction of the image as more of the frequency space is progressively filled.
+
+👉 **Live App:**  
+https://mri-image-reconstruction-using-kspace.streamlit.app/
+
+---
+
+## ⚕️ Live Image Reconstruction
 
 ![Demo](docs/demo.gif)
 
-**Live Image Reconstruction.**
-
 ![Demo](docs/fourier_reconstruction.gif)
 
-**K-space Explorer Online** is the experimental browser based version of [K-space Explorer](https://github.com/birogeri/kspace-explorer). The online version does not require any installation, and it can be used on any device capable of running a modern browser.
+## 🖼️ Features
 
-The software has many useful features, such as:
+- 📂 Upload your own `.dcm` (DICOM) MRI image, or use the provided default sample.
+- 🌀 Visualize the **magnitude spectrum** of the Fourier Transform (k-space).
+- 🔍 Step-by-step **live image reconstruction** from k-space data.
+- ⚙️ Session management using Streamlit's `session_state`.
+- 🚫 Robust error handling — fallback to default image if upload fails.
 
-* A modern responsive user interface using Streamlit
-* Automatic Fourier transform to instantaneously visualise changes
-* Load your own images and analyse artefacts originating from k-space
-
-Due to the differences in user interface capability, K-space Online does not have all the tools and features of the desktop version.
-
-## **Contents**
-* [Installation](#installation)
-* [Starting the program](#starting-the-program)
-* [Disclaimer and limitations](#disclaimer-and-limitations)
-
-
-## **Installation**
-
-To try the online version of K-space Explorer, you do not need to install anything.
-[There is a hosted version on Streamlit Cloud.](https://share.streamlit.io/birogeri/kspace-explorer-streamlit/kspace.py)
 ---
 
-If you would like to install and run or host it on your own computer, follow the steps below
+## 🚀 How It Works
 
-1. You will need to have the following software and packages
+1. **Image Loading:**  
+   The app accepts `.dcm` files (commonly used for medical imaging). If none is provided, it loads a default MRI image.
 
-    * **Python 3** (ideally the latest version). Download from the [Python 3 homepage](https://www.python.org/downloads).
+2. **Fourier Transform:**  
+   The image is converted into its frequency domain using Fast Fourier Transform (FFT). The k-space represents spatial frequencies present in the image.
 
-2. Required Packages for Python 3:
+3. **Coordinate Processing:**  
+   The app focuses first on reconstructing the left half of the frequency spectrum (progressive loading), prioritizing pixels closer to the center (lower frequencies).
 
-    * **Streamlit** - runs the code and displays the app
-    * **Pillow**    - opens regular images such as jpg or png
-    * **NumPy**     - handles FFT transforms and array operations
-    * **pydicom**   - DICOM format medical image reader
+4. **Progressive Reconstruction:**  
+   Using `live_fourier_reconstruction()`, the image is reconstructed in real-time as frequency components are progressively added back.
 
-    Install via pip by copying the command below to a command prompt (Windows: `Win+R` and type `cmd` and press Enter)
+5. **Display:**  
+   View both the k-space magnitude and the live-updating reconstructed image.
 
-    ```shell
-        pip3 install numpy pydicom Pillow streamlit
-    ```
+---
 
-3. [Download the app](https://github.com/MohitGupta0123/MRI-Image-reconstruction-using-kspace/archive/refs/heads/main.zip) and extract it
+## 📦 Installation & Local Development
 
-## Starting the program
+To run the project locally:
 
-Navigate to the folder that contains the extracted software and run it by typing the command below
-
-``` shell
-    python -m streamlit run kspace.py
+```bash
+git clone https://github.com/MohitGupta0123/MRI-Image-reconstruction-using-kspace.git
+cd MRI-Image-reconstruction-using-kspace
+pip install -r requirements.txt
+streamlit run kspace.py
 ```
 
-More info about Streamlit can be found [here.](https://docs.streamlit.io/)
+> **Note:** Replace `kspace.py` with your actual Streamlit script filename.
+
+---
+
+Perfect!  
+Here’s a **fully polished README** for your project, with **badges** for Streamlit, Python, license, and deployment link.  
+You can copy this directly into your `README.md` file:
+
+---
+
+# 🧩 MRI Image Reconstruction using K-Space (Fourier Transform Demo)
+
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Live_App-brightgreen?logo=streamlit)](https://mri-image-reconstruction-using-kspace.streamlit.app/)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F-red)](https://github.com/)
+
+An interactive Streamlit application that demonstrates step-by-step reconstruction of MRI images from their frequency domain (k-space) data using the 2D Fourier Transform.
+
+This tool is perfect for educational purposes to understand how low and high-frequency components of MRI contribute to image formation.
+
+👉 **Live Demo:**  
+https://mri-image-reconstruction-using-kspace.streamlit.app/
+
+---
+
+## ✨ Features
+
+- 📂 **Upload your own `.dcm` (DICOM) MRI image**, or use the default sample.
+- 🌀 **Visualize the magnitude spectrum** of the Fourier Transform (k-space).
+- 🔍 **Live image reconstruction**, progressively add frequency components.
+- ⚙️ **Streamlit Session State** support for smooth interaction.
+- 🚫 **Robust error handling** — fallback to default image if upload fails.
+
+---
+
+## 🧩 How It Works
+
+1. **Image Loading**  
+   Upload any MRI DICOM image or use the default test image provided.
+
+2. **Fourier Transform (FFT)**  
+   The image is transformed into the frequency domain (k-space) using FFT.
+
+3. **Visualization**  
+   The magnitude spectrum is displayed for visual understanding of frequency components.
+
+4. **Progressive Reconstruction**  
+   The app progressively reconstructs the image by adding frequency components back based on their distance from the center (low frequencies first).
+
+---
+
+## 🛠️ Tech Stack
+
+- **Python 3.8+**
+- **Streamlit**
+- **NumPy**
+- **Matplotlib**
+- **Pydicom** (if you expand for advanced DICOM handling)
+
+---
+
+## 🚀 Installation
+
+If you want to run this locally:
+
+```bash
+git clone https://github.com/your-username/mri-image-reconstruction.git
+cd mri-image-reconstruction
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+---
+
+## 🖥️ Usage
+
+- Upload a `.dcm` image file.
+- Watch the k-space magnitude spectrum.
+- Observe real-time image reconstruction.
+- Understand how different frequency components affect image quality.
+
+---
+
+## 🌐 Try it Online
+
+No need to set up locally!  
+Access the live version here:  
+👉 **[Launch App](https://mri-image-reconstruction-using-kspace.streamlit.app/)**
+
+---
+
+## 🛠️ Tech Stack
+
+- Python 🐍
+- Streamlit 🎈
+- NumPy ⚙️
+- Matplotlib (optional for visualization)
+- DICOM image handling (assumed via `pydicom` or similar)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you have ideas to improve the visualization, add more reconstruction modes, or extend this tool, feel free to open an issue or PR.
+
+---
+
+## ✨ Acknowledgements
+
+- Inspiration from medical imaging techniques and MRI physics.
+- Powered by Streamlit for fast web app development.
+
+---
 
 ## Disclaimer and limitations
 
 This software is not intended for medical use.
 Even if a scanner original DICOM file is used, the resulting k-space is not equivalent to the scanner raw data as it contains all post-acquisition modifications applied by the scanner software.
 
-## I hope you like it 🌟
+---
+
+## I hope you like it 🌟    
