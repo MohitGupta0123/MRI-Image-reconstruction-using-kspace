@@ -1,12 +1,13 @@
 # K-space Explorer Online
 
-**An educational tool to get hands-on experience with the k-space and the
-effects of various modifications on the resulting image after an inverse
-Fourier transform.**
+**An educational tool to get hands-on experience with the k-space and the effects of various modifications on the resulting image after an inverse Fourier transform.**
 
 **[Follow this link to run the online version (hosted on Streamlit cloud)](https://kspace-explorer.streamlitapp.com/)**
 
 ![Demo](docs/demo.gif)
+
+**Live Image Reconstruction.**
+
 ![Demo](docs/fourier_reconstruction.gif)
 
 **K-space Explorer Online** is the experimental browser based version of [K-space Explorer](https://github.com/birogeri/kspace-explorer). The online version does not require any installation, and it can be used on any device capable of running a modern browser.
