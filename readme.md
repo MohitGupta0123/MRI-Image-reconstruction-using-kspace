@@ -76,6 +76,34 @@ streamlit run kspace.py
 
 ---
 
+
+---
+
+## 📂 Project Structure
+
+``` 
+📦 Your Project Name
+├── .streamlit/                # Streamlit configuration
+│   └── config.toml
+├── docs/                      # assets
+│   ├── demo.gif
+│   └── fourier_reconstruction.gif
+├── images/                    # Images and icons
+│   ├── default.dcm
+│   └── icon.ico
+├── kspace.py                  # Main Python script
+├── readme.md                  # Project README
+├── requirements.txt           # Python dependencies
+```
+
+---
+
+## 🧠 Learn More
+
+- [MRI Physics and k-space Explained](https://mriquestions.com/index.html)
+
+---
+
 ## 🌐 Try it Online
 
 No need to set up locally!  
